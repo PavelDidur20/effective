@@ -1,0 +1,25 @@
+
+type User {
+    id: ID!
+  name: String!
+  email: String!
+}
+
+
+type Query {
+  users: [User!]!   @all(model: "App\\Models\\User")
+    getUser(id: Int!): User @find(model: "App\\Models\\User")
+}
+
+type Mutation {
+    createUser(
+    name: String!
+    email: String!
+    password: String!
+  ): User!
+    @create(
+      model: "App\\Models\\User",
+      arguments: ["name", "email", "password"]
+    )
+
+}
